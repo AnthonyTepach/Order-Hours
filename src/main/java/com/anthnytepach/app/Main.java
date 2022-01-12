@@ -2,7 +2,10 @@ package com.anthnytepach.app;
 
 import com.anthnytepach.app.Files.FileBrowser;
 
+import javax.swing.*;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -21,6 +24,24 @@ public class Main {
     public static void main(String[] args) {
         Main main = new Main();
         main.reformatDocument();
+        main.writeDocument();
+    }
+
+    private void writeDocument() {
+        try {
+            FileWriter fw = new FileWriter(new FileBrowser().saveAs().concat("/Reporte-Asistencia-Formateado.csv"), Charset.forName("utf-8"));
+
+            for (int i = 0; i < newData.size(); i++) {
+                fw.write(newData.get(i));
+                fw.write("\n");
+            }
+            fw.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            JOptionPane.showMessageDialog(null,"Finalizado");
+        }
     }
 
     public void reformatDocument() {
@@ -39,9 +60,9 @@ public class Main {
                 }
                 String format_line = "";
                 for (int j = 0; j < array_items.length - 1; j++) {
-                    format_line = format_line + "\t" + array_items[j];
+                    format_line = format_line + "," + array_items[j];
                 }
-                newData.add(format_line.substring(1) + "\t" + format_hours.substring(1));
+                newData.add(format_line.substring(1) + "," + format_hours.substring(1));
 
             }
 
