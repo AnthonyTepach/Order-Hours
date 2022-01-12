@@ -11,7 +11,9 @@ public class FileBrowser extends JFileChooser {
     public String saveAs(){
         super.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         int result = super.showSaveDialog(null);
-        if (result==JFileChooser.CANCEL_OPTION);
+        if (result==JFileChooser.CANCEL_OPTION){
+            return  "C:\\Users\\"+System.getProperty("user.name")+"\\Downloads";
+        }
         return super.getSelectedFile().toString();
     }
 
@@ -20,7 +22,9 @@ public class FileBrowser extends JFileChooser {
         super.setFileFilter(filter);
         int result = super.showOpenDialog(null);
         File file = super.getSelectedFile();
-        if (result==JFileChooser.CANCEL_OPTION);
+        if (result==JFileChooser.CANCEL_OPTION){
+            openFile(typeFile);
+        }
         return file.getAbsolutePath();
     }
 }
