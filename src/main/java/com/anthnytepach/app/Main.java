@@ -6,10 +6,11 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        String line="542\tMaria Francisca\tTorres Velazquez\t\tFemenino\t21\tQUINCENA\t1\tCargo\t11/01/2022\t3\t15:30:55,16:25:29,07:50:43\n";
-        String array_time[]=line.split("\t");
+        String line="542\tMaria Francisca\tTorres Velazquez\t\tFemenino\t21\tQUINCENA\t1\tCargo\t10/01/2022\t4\t16:59:02,07:37:35,16:01:39,18:54:42";
+        String array_items[]=line.split("\t");
+        String array_times[]=array_items[11].split(",");
 
-        List<String> times=Arrays.asList(array_time);
+        List<String> times=Arrays.asList(array_times);
         Collections.sort(times);
 
 
